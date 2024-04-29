@@ -58,14 +58,7 @@ const Post = ({ post }: PostProps) => {
       <Link to={`/detail/${post.id}`}>
         <ItemArea>
           <div>
-            {/* 
-              * TODO 5.
-              * [로딩 최적화 - 이미지 사이즈 최적화] 
-              * 필요 이상의 큰 이미지 파일을 요청하여 로딩이 오래걸립니다.
-              * 적절한 이미지의 사이즈는 영역 사이즈의 2배 정도 입니다.
-              * 최적화된 이미지 포멧을 사용해 사이즈를 줄일 수 있습니다.
-            */}        
-            <ItemImg src={`${post.image}${getParametersForUnsplash({width: 2048, height: 2048, quality: 80, format: 'jpg'})}`} alt={'img'}/>
+            <ItemImg src={`${post.image}${getParametersForUnsplash({width: 256, height: 256, quality: 80, format: 'jpg'})}`} alt={'img'}/>
           </div>
           <ContentArea>
             <h2>{post.title}</h2>
