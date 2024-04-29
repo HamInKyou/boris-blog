@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { useState } from "react";
-import ImageModal from "./ImageModal";
+import {lazy, useState} from "react";
+const ImageModal = lazy(() => import('./ImageModal'));
 
 const Gallery = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -8,13 +8,6 @@ const Gallery = () => {
   return (
     <div>
       <AlbumButton onClick={() => setIsModalOpen(true)}>My album</AlbumButton>
-      {/* 
-        * TODO 4.
-        * [로딩 최적화 - 컴포넌트 Lazy Load] 
-        * 'react-image-gallery'은 모달 내에서만 사용하는 모듈이지만
-        * 메인페이지의 번들에 포함되어 있습니다.
-      */}
-
       {/* 
         * TODO 4.
         * [로딩 최적화 - 컴포넌트 Preload] 
