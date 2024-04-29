@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {useEffect, useState} from "react";
+import {Suspense, useEffect, useState} from "react";
 import createLazyComponent from "../../utils/createLazyComponent";
 const ImageModal = createLazyComponent(() => import('./ImageModal'));
 
@@ -9,15 +9,18 @@ const Gallery = () => {
   useEffect(() => {
     ImageModal.preload();
   }, []);
+
+  useEffect(() => {
+    const img = new Image();
+    img.src = './0.jpg';
+  }, []);
+
   return (
     <div>
       <AlbumButton onClick={() => setIsModalOpen(true)}>My album</AlbumButton>
-      {/* 
-        * TODO 4.
-        * [로딩 최적화 - 이미지 Preload] 
-        * 처음 모달을 열었을 때 이미지를 로드하기 전과 후의 모달 사이즈가 달라집니다.
-      */}
+      <Suspense fallback={null}>
       { isModalOpen && <ImageModal onClose={() => setIsModalOpen(false)} />}
+      </Suspense>
     </div>
   )
 }
