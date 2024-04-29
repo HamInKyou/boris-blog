@@ -1,20 +1,17 @@
 import styled from 'styled-components';
-import {lazy, useState} from "react";
-const ImageModal = lazy(() => import('./ImageModal'));
+import {useEffect, useState} from "react";
+import createLazyComponent from "../../utils/createLazyComponent";
+const ImageModal = createLazyComponent(() => import('./ImageModal'));
 
 const Gallery = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  useEffect(() => {
+    ImageModal.preload();
+  }, []);
   return (
     <div>
       <AlbumButton onClick={() => setIsModalOpen(true)}>My album</AlbumButton>
-      {/* 
-        * TODO 4.
-        * [로딩 최적화 - 컴포넌트 Preload] 
-        * ImageModal 을 Lazy Loading 할 경우 
-        * 클릭 후 리소스를 로드하기 때문에 모달이 즉시 표시되지 않습니다.
-      */}
-
       {/* 
         * TODO 4.
         * [로딩 최적화 - 이미지 Preload] 
