@@ -58,7 +58,7 @@ const Post = ({ post }: PostProps) => {
       <Link to={`/detail/${post.id}`}>
         <ItemArea>
           <div>
-            <ItemImg src={`${post.image}${getParametersForUnsplash({width: 256, height: 256, quality: 80, format: 'jpg'})}`} alt={'img'}/>
+            <ItemImg src={`${post.image}${getParametersForUnsplash({width: 256, height: 256, quality: 80, format: 'webp'})}`} alt={'img'}/>
           </div>
           <ContentArea>
             <h2>{post.title}</h2>
