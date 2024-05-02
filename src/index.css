@@ -16,7 +16,11 @@ body {
 
 @font-face {
   font-family: PermanentMarker;
-  src: url('./fonts/PermanentMarker-Regular.ttf');
+  src:
+          local('PermanentMarker'),
+          url('./fonts/PermanentMarker-Regular.woff2'),
+          url('./fonts/PermanentMarker-Regular.woff'),
+          url('./fonts/PermanentMarker-Regular.ttf');
   font-display: block;
 }
 
