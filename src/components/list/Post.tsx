@@ -26,31 +26,9 @@ const Post = ({ post }: PostProps) => {
     return `?w=${width}&h=${height}&q=${quality}&fm=${format}&fit=crop`
   }
 
-  /*
-  * TODO 7.
-  * [렌더링 최적화 - 병목 코드 최적화] 
-  * 많은 연산으로 병목을 일으키는 코드입니다.
-  * 필요 이상의 모든 텍스트에 대해 계산하고 있습니다.
-  * 파라미터로 넘어온 문자열에서 일부 특수문자를 제거하는 함수
-  * */
   const removeSpecialCharacter = (str: string) => {
-    const removeCharacters = ['#', '_', '*', '~', '&', ';', '!', '[', ']', '`', '>', '\n', '=', '-']
-    let _str = str
-    let i = 0,
-      j = 0
-
-    for (i = 0; i < removeCharacters.length; i++) {
-      j = 0
-      while (j < _str.length) {
-        if (_str[j] === removeCharacters[i]) {
-          _str = _str.substring(0, j).concat(_str.substring(j + 1))
-          continue
-        }
-        j++
-      }
-    }
-
-    return _str
+    const pattern = /[#_*~&;!\[\]`>\n=-]/g;
+    return str.substring(0, 300).replace(pattern, '');
   }
 
   return (
