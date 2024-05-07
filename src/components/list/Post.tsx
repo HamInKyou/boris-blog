@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { PostDto } from '../../dto/PostDto';
 import styled from 'styled-components';
+import {getParametersForUnsplash} from "../../utils/getParametersForUnsplash";
 
 interface PostProps {
   post: PostDto;
@@ -15,15 +16,6 @@ const Post = ({ post }: PostProps) => {
   const getDateTime = () => {
     const createdTime = new Date(post.createdTime);
     return `${createdTime.getFullYear()}.${substringWithZeroPad(createdTime.getMonth() + 1, 2)}.${substringWithZeroPad(createdTime.getDate(), 2)}`
-  }
-
-  const getParametersForUnsplash = ({width, height, quality, format}: {
-    width: number;
-    height: number;
-    quality: number;
-    format: string;
-  }) => {
-    return `?w=${width}&h=${height}&q=${quality}&fm=${format}&fit=crop`
   }
 
   const removeSpecialCharacter = (str: string) => {

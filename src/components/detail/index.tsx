@@ -4,6 +4,7 @@ import Templates from '../common/Templates';
 import { PostDto } from '../../dto/PostDto';
 import ReactMarkdown from 'react-markdown';
 import styled from 'styled-components';
+import {getParametersForUnsplash} from "../../utils/getParametersForUnsplash";
 
 const Detail = () => {
   const { id } = useParams()
@@ -26,20 +27,17 @@ const Detail = () => {
         {post?.title}
       </PostTitle>
 
-      {/* 
-        * 과제 1.
-        * [로딩 최적화 - 이미지 사이즈 최적화] 
-        * 필요 이상의 큰 이미지 파일을 요청하여 로딩이 오래걸립니다.
-        * 적절한 이미지의 사이즈는 영역 사이즈의 2배 정도 입니다.
-        * 최적화된 이미지 포멧을 사용해 사이즈를 줄일 수 있습니다.
-        */}
-
         {/* 
         * 과제 4.
         * [코어 웹 바이탈 개선 - CLS(Cumulative Layout Shift)]
         * 이미지 비율과 크기를 보정해 Layout Shift 현상을 개선해주세요.
         */}
-      <PostImage src={post?.image} alt='thumnail'/>
+      <picture>
+        <source srcSet={`${post?.image}${getParametersForUnsplash({width: 512, height: 512, quality: 80, format: 'webp'})}`} type='image/webp' />
+        <source srcSet={`${post?.image}${getParametersForUnsplash({width: 512, height: 512, quality: 80, format: 'jpg'})}`} type='image/jpeg' />
+        <PostImage src={post?.image} alt='thumnail'/>
+      </picture>
+
 
       <PostContent>
         { post ? <ReactMarkdown children={post.content} /> : <>loading...</> }
@@ -55,7 +53,8 @@ const PostTitle = styled.h2`
 `
 
 const PostImage = styled.img`
-  width: 100%;
+  width: 256px;
+  height: 256px;
   margin-top: 12px;
 `
 
