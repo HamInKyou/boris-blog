@@ -26,7 +26,10 @@ body {
 
 @font-face {
   font-family: RubikScribble;
-  src: url('./fonts/RubikScribble-Regular.ttf');
+  src:  local('RubikScribble'),
+        url('./fonts/subset-RubikScribble-Regular.woff2'),
+        url('./fonts/subset-RubikScribble-Regular.woff'),
+        url('./fonts/RubikScribble-Regular.ttf');
   font-display: block;
 }
 

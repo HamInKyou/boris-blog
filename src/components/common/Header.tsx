@@ -16,12 +16,6 @@ const Header = () => {
   return (
     <HeaderArea>
       <Link to={`/`}>
-        {/* 
-          * 과제 3.
-          * [로딩 최적화 - 폰트 최적화] 
-          * 사이즈가 큰 일반적인 폰트 포멧을 사용하고 있습니다.
-          * 사용하는 글자가 한정적입니다.
-          */}
         <HeaderTitle>Boris's Blog</HeaderTitle>
       </Link>
       <Link to={`/list`}>
